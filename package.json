@@ -1,0 +1,41 @@
+{
+  "name": "nextjs-boilerplate",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "node server.js",
+    "test": "mocha --reporter spec tests/**/*.test.js",
+    "test:watch": "npm run test -- --watch",
+    "dev": "npm-run-all --parallel test:watch server",
+    "build": "next build",
+    "watch": "nodemon server.js -w server.js",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "heroku-nextjs-build"
+  },
+  "engines": {
+    "node": "6.9.x"
+  },
+  "cacheDirectories": [
+    "nextjs/node_modules"
+  ],
+  "dependencies": {
+    "@mars/heroku-nextjs-build": "^2.0.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.6",
+    "next": "latest",
+    "next-redux-wrapper": "^1.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "mocha": "^3.3.0",
+    "expect": "^1.20.2",
+    "npm-run-all": "^4.0.2"
+  },
+  "author": "Spencer Bigum",
+  "license": "ISC"
+}
