@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 // Tell Mongoose to use a promise instead of callbacks
 mongoose.Promise = global.Promise;

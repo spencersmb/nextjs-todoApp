@@ -1,3 +1,16 @@
+module.exports.cleanup = (app, mongooseDB) => {
+
+    app.close(function () {
+        console.log("Closed out remaining connections.")
+        mongooseDB.connection.close();
+        // process.exit();
+    })
+
+    // setTimeout( function () {
+    //     console.error("Could not close connections in time, forcing shut down");
+    //     // process.exit(1);
+    // }, 30*1000);
+}
 // module.exports.add = (a,b) => a + b;
 
 // module.exports.square = (x) => x*x;

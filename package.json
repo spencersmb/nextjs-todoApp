@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "server": "node server.js",
-    "test": "mocha --reporter spec tests/**/*.test.js",
+    "jest": "jest",
+    "jest:watch": "npm run jest -- --watch",
+    "test": "mocha --reporter spec __tests__/**/*.test.js",
     "test:watch": "npm run test -- --watch",
     "dev": "npm-run-all --parallel test:watch server",
     "build": "next build",
@@ -21,6 +23,7 @@
     "@mars/heroku-nextjs-build": "^2.0.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "mongodb": "^2.2.26",
     "mongoose": "^4.9.6",
     "next": "latest",
     "next-redux-wrapper": "^1.0.0",
@@ -31,10 +34,13 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "babel-jest": "^19.0.0",
     "enzyme": "^2.8.2",
-    "mocha": "^3.3.0",
     "expect": "^1.20.2",
-    "npm-run-all": "^4.0.2"
+    "jest": "^19.0.2",
+    "mocha": "^3.3.0",
+    "npm-run-all": "^4.0.2",
+    "supertest": "^3.0.0"
   },
   "author": "Spencer Bigum",
   "license": "ISC"
