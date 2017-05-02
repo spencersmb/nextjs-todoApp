@@ -1,11 +1,7 @@
 const express = require('express')
 const next = require('next')
 const fs = require('fs')
-const routes = require('./server/routes');
 const bodyParser = require('body-parser') // turns the body into json object
-
-// DB SETUP
-const {mongoose} = require('./server/db/mongoose') // mongoose config
 
 // ENV SETUP
 const dev = process.env.NODE_ENV !== 'production'
@@ -20,11 +16,6 @@ app.prepare()
 
     // allows us to send json to our express app
     expressServer.use(bodyParser.json())
-
-    // ADD TODO TO DB
-    expressServer.post('/todos', (req, res) => {
-        todoActions.addTodo(req, res)
-    })
 
     expressServer.get('/other', (req, res) => {
       console.log('other route');
