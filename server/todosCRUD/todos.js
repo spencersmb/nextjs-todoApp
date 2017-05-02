@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
-let {Todo} = require('../models/todos');
+// let {Todo} = require('../models/todos');
 // let {User} = require('./models/user');
+const TodoModel = require('../models/todos');
+let Todo = TodoModel.getTodoModel();
+
+
 
 exports.addTodo = function(req, res){
 
@@ -9,19 +13,9 @@ exports.addTodo = function(req, res){
     })
 
     todo.save().then((doc) => {
-        res.send(doc);
+        res.status(200).send(doc);
     }, (e) => {
         res.status(400).send(e);
     })
 
 }
-
-// USE TRY CATCH IF USING MOCHA AND DO NOT IMPORT/REQUIRE THE MODEL
-// let Todo
-
-// Try catch to use with Mocha testing
-// try {
-//   Todo = mongoose.model('Todo')
-// } catch (error) {
-//   Todo = require('../models/todos')
-// }

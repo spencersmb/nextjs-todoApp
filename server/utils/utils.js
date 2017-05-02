@@ -1,8 +1,12 @@
+var colors = require('colors')
+
 module.exports.cleanup = (app, mongooseDB) => {
 
     app.close(function () {
-        console.log("Closed out remaining connections.")
         mongooseDB.connection.close();
+        console.log(" ");
+        console.log("Closed out remaining connections.".grey)
+        console.log(" ");
         // process.exit();
     })
 

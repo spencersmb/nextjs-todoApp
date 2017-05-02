@@ -18,9 +18,22 @@ const expressServer = express()
 app.prepare()
   .then(() => {
 
-    // Build Routes and add them to the express server
-    // pass in ExpressServer, requestHandlers, nextApp
-    routes.init(expressServer, handle, app)
+    // allows us to send json to our express app
+    expressServer.use(bodyParser.json())
+
+    // ADD TODO TO DB
+    expressServer.post('/todos', (req, res) => {
+        todoActions.addTodo(req, res)
+    })
+
+    expressServer.get('/other', (req, res) => {
+      console.log('other route');
+      return app.render(req, res, '/other', req.query)
+    })
+
+    expressServer.get('*', (req, res) => {
+        return handle(req, res)
+    })
 
     expressServer.listen(port, (err) => {
       if (err) throw err

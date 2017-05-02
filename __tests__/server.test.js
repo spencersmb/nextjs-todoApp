@@ -3,31 +3,58 @@ const expect = require('expect')
 const mongoose = require('mongoose')
 const utils = require('../server/utils/utils')
 const {app} = require('../server/testServer')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
+var colors = require('colors')
 let server
 
-beforeAll((done) => {
 
-    server = app.listen(port, () => {
-        console.log('App running on port 3000')
-    })
 
-    mongoose.Promise = global.Promise
+// beforeAll((done) => {
 
-    // Connect to db first
-    mongoose.connect('mongodb://localhost:27017/NodeTodos')
+//     server = app.listen(port, () => {
+//         console.log('App running on port 3000')
+//     })
 
-    done() //must have done in here to work correctly apparently 
+//     mongoose.Promise = global.Promise
 
-})
+//     // Connect to db first
+//     mongoose.connect('mongodb://localhost:27017/NodeTodos')
 
-afterAll( () => {
-    utils.cleanup(server, mongoose)
-})
+//     done();
+
+// })
+
+// afterAll( () => {
+//     // utils.cleanup(server, mongoose)
+//     cleanup(server, mongoose)
+// })
 
 describe('POST /todos', ()=> {
 
-    it('Should create a new todo update tw', (done) => {
+    // https://mochajs.org/
+    // USE FOR MOCHA TESTING
+    // DONT FORGET TO ADD TRY CATCH FOR MODELS IF USING MOCHA
+    before( (done) => {
+        server = app.listen(port, () => {
+            console.log(" ");
+            console.log(`App running on port ${port}`.green)
+            console.log(" ");
+        })
+
+        mongoose.Promise = global.Promise
+
+        // Connect to db first
+        mongoose.connect('mongodb://localhost:27017/NodeTodos')
+
+        done() //must have done in here to work correctly apparently 
+    })
+
+    after(function() {
+        // runs after all tests in this block
+        utils.cleanup(server, mongoose)
+    })
+
+    it('Should create a new todo update', (done) => {
         
         var text = "worked again again";
 
@@ -36,34 +63,17 @@ describe('POST /todos', ()=> {
             .send({text})
             .expect(200)
             .expect((res) => {
-                expect(res.body.text).toBe(text)
+                expect(res.body.text).toBe(text);
             })
             .end((err, res)=>{
+                
                 if(err){
                     return done(err);
                 }
-                done();
+
+                return done();
             })
             // End Request Test
     })
 
-    // USE FOR MOCHA TESTING
-    // DONT FORGET TO ADD TRY CATCH FOR MODELS IF USING MOCHA
-    // before( (done) => {
-    //     server = app.listen(3000, () => {
-    //         console.log('App running on port 3000')
-    //     })
-
-    //     mongoose.Promise = global.Promise
-
-    //     // Connect to db first
-    //     mongoose.connect('mongodb://localhost:27017/NodeTodos')
-
-    //     done() //must have done in here to work correctly apparently 
-    // })
-
-    // after(function() {
-    //     // runs after all tests in this block
-    //     utils.cleanup(server, mongoose)
-    // })
 })

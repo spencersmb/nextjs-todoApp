@@ -11,6 +11,19 @@ const init = (server, handle = null, app = null) => {
       todoActions.addTodo(req, res)
   })
 
+  if(app){
+    server.get('/other', (req, res) => {
+      console.log('other route');
+      return app.render(req, res, '/other', req.query)
+    })
+  }
+
+  if(handle){
+    server.get('*', (req, res) => {
+        return handle(req, res)
+    })
+  }
+
 }
 
 module.exports = {

@@ -4,10 +4,10 @@
   "scripts": {
     "server": "node server.js",
     "jest": "jest",
-    "jest:watch": "npm run jest -- --watch",
+    "jest:watch": "npm run jest -- --watch --no-cache",
     "test": "mocha --reporter spec __tests__/**/*.test.js",
     "test:watch": "npm run test -- --watch",
-    "dev": "npm-run-all --parallel test:watch server",
+    "dev": "npm-run-all --parallel server",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
     "start": "next start -p $PORT",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "babel-jest": "^19.0.0",
+    "colors": "^1.1.2",
     "enzyme": "^2.8.2",
     "expect": "^1.20.2",
     "jest": "^19.0.2",
