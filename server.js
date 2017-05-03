@@ -22,6 +22,11 @@ app.prepare()
       return app.render(req, res, '/other', req.query)
     })
 
+    expressServer.get('/', (req, res) => {
+      console.log('index route');
+      return app.render(req, res, '/index', req.query)
+    })
+
     expressServer.get('*', (req, res) => {
         return handle(req, res)
     })

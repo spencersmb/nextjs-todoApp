@@ -21,8 +21,10 @@
   ],
   "dependencies": {
     "@mars/heroku-nextjs-build": "^2.0.0",
+    "aphrodite": "^1.1.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "isomorphic-unfetch": "^1.0.0",
     "mongodb": "^2.2.26",
     "mongoose": "^4.9.6",
     "next": "latest",
