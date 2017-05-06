@@ -43,32 +43,32 @@ app.prepare()
       return app.render(req, res, '/', req.query)
     })
 
-    expressServer.get('/celeb-jokes', (req, res) => {
-      // const userToken = authUtils.getUserFromCookie(req);
-      // console.log(userToken)
+    // expressServer.get('/celeb-jokes', (req, res) => {
+    //   // const userToken = authUtils.getUserFromCookie(req);
+    //   // console.log(userToken)
 
-      // request
-      //   .get('http://localhost:3001/api/jokes/celebrity')
-      //   .set('Authorization', 'Bearer ' + req.userToken)
-      //   .end(function(err, data) {
-      //     // if(data.status == 403){
-      //     //   res.send(403, '403 Forbidden');
-      //     // } else {
-      //     //   var movies = data.body;
-      //     //   res.render('movies', { movies: movies} );
-      //     // }
-      //     console.log('node fetch');
-      //     console.log(data.body)
-      //     // res.send({jokes: data.body})
-      //     console.log('node fetch error')
-      //     console.log(err)
-      //   })
+    //   // request
+    //   //   .get('http://localhost:3001/api/jokes/celebrity')
+    //   //   .set('Authorization', 'Bearer ' + req.userToken)
+    //   //   .end(function(err, data) {
+    //   //     // if(data.status == 403){
+    //   //     //   res.send(403, '403 Forbidden');
+    //   //     // } else {
+    //   //     //   var movies = data.body;
+    //   //     //   res.render('movies', { movies: movies} );
+    //   //     // }
+    //   //     console.log('node fetch');
+    //   //     console.log(data.body)
+    //   //     // res.send({jokes: data.body})
+    //   //     console.log('node fetch error')
+    //   //     console.log(err)
+    //   //   })
 
 
-      // return app.render(req, res, '/celeb-jokes', req.query, { nodeJokes: data.body })
-      return app.render(req, res, '/celeb-jokes', req.query)
+    //   // return app.render(req, res, '/celeb-jokes', req.query, { nodeJokes: data.body })
+    //   return app.render(req, res, '/celeb-jokes', req.query)
 
-    })
+    // })
 
     expressServer.get('/auth/sign-in', (req, res) => {
       // when we hit this route
