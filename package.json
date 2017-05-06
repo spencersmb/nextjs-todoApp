@@ -10,7 +10,7 @@
     "dev": "npm-run-all --parallel server",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "heroku-postbuild": "heroku-nextjs-build"
   },
   "engines": {
@@ -22,9 +22,12 @@
   "dependencies": {
     "@mars/heroku-nextjs-build": "^2.0.0",
     "aphrodite": "^1.1.0",
+    "auth0-lock": "^10.15.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "isomorphic-unfetch": "^1.0.0",
+    "js-cookie": "^2.1.4",
+    "jwt-decode": "^2.2.0",
     "mongodb": "^2.2.26",
     "mongoose": "^4.9.6",
     "next": "latest",
@@ -33,16 +36,20 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "request": "^2.81.0",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-jest": "^19.0.0",
     "colors": "^1.1.2",
+    "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
     "expect": "^1.20.2",
     "jest": "^19.0.2",
     "mocha": "^3.3.0",
     "npm-run-all": "^4.0.2",
+    "redux-devtools-extension": "^2.13.2",
     "supertest": "^3.0.0"
   },
   "author": "Spencer Bigum",

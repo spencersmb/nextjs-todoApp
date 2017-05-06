@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toggleTodo } from '../../store'
-import fetch from 'isomorphic-unfetch'
 class TodoList extends React.Component {
 
   componentDidMount () {
@@ -17,7 +16,7 @@ class TodoList extends React.Component {
     return (
       <div>
         <ul>
-            {todos.map(todo => <li>{todo.text}</li>)}
+            {todos.map(todo => <li key={todo.text}>{todo.text}</li>)}
         </ul>
       </div>
 

@@ -1,7 +1,10 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import withRedux from 'next-redux-wrapper'
+import { initStore } from '../store'
 import { StyleSheetServer } from 'aphrodite'
 
-export default class MyDocument extends Document {
+
+class MyDocument extends Document {
   static async getInitialProps ({ renderPage }) {
     const {html, css} = StyleSheetServer.renderStatic(() => renderPage())
     return {...html, css}
@@ -23,10 +26,12 @@ export default class MyDocument extends Document {
           <style data-aphrodite dangerouslySetInnerHTML={{ __html: this.props.css.content }} />
         </Head>
         <body>
-          <Main />
-          <NextScript />
+            <Main />
+            <NextScript />
         </body>
       </html>
     )
   }
 }
+
+export default withRedux(initStore)(MyDocument)
