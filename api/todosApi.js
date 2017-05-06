@@ -28,7 +28,9 @@ class TodosApi {
         console.log(access.token)
         return new Promise((resolve, reject) => {
 
-            fetch('http://localhost:3001/api/jokes/celebrity', {
+            const local = "http://localhost:3001/"
+            const api = "https://nameless-scrubland-28835.herokuapp.com/"
+            fetch(`${api}api/jokes/celebrity`, {
                     method: 'GET',
                     headers: { 
                          Authorization: `Bearer ${access.token}`,
