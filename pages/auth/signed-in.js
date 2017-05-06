@@ -26,7 +26,7 @@ class SignedIn extends React.Component {
     }
     setToken(token)
     this.props.authenticateUser()
-    this.props.getJokes()
+    // this.props.getJokes()
     Router.push('/celeb-jokes')
   }
   render () {

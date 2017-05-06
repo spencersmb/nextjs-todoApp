@@ -21,7 +21,7 @@ class CelebJokes extends React.Component {
 
     if(state.isAuthenticated){
       console.log('send dispatcher to make api call for jokes')
-      // await store.dispatch(getJokes({token}))
+      await store.dispatch(getJokes({token}))
     }
       
     return { isServer }
