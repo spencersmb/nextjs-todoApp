@@ -1,33 +1,29 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
-import { StyleSheetServer } from 'aphrodite'
-
+import { ServerStyleSheet } from 'styled-components'
 
 class MyDocument extends Document {
-  static async getInitialProps ({ renderPage }) {
-    const {html, css} = StyleSheetServer.renderStatic(() => renderPage())
-    return {...html, css}
-  }
 
   constructor (props) {
     super(props)
-    const { __NEXT_DATA__, css } = props
-    if (css && css.renderedClassNames) {
-      __NEXT_DATA__.ids = css.renderedClassNames
-    }
   }
 
   render () {
+
+    const sheet = new ServerStyleSheet()
+		const main = sheet.collectStyles(<Main />)
+		const styleTags = sheet.getStyleElement()
+
     return (
       <html>
         <Head>
           <title>My page</title>
-          <style data-aphrodite dangerouslySetInnerHTML={{ __html: this.props.css.content }} />
+          {styleTags}
         </Head>
         <body>
-            <Main />
-            <NextScript />
+          {main}
+          <NextScript />
         </body>
       </html>
     )

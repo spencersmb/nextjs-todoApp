@@ -6,18 +6,22 @@ import withRedux from 'next-redux-wrapper'
 import Page from '../components/Page'
 import TodoList from '../components/todo/todoList'
 import Link from 'next/link'
-import { StyleSheet, css } from 'aphrodite/no-important'
 import Header from '../components/Header'
 import defaultPage from '../hocs/defaultPage'
 import PageTemplate from '../components/PageTemplateLayout'
+import styled from 'styled-components'
 
-if (typeof window !== 'undefined') {
-  StyleSheet.rehydrate(window.__NEXT_DATA__.ids)
-}
+const Title = styled.h1`
+  color: red;
+  font-size: 50px;
+
+  > a{
+    font-size:18px;
+  }
+`
 
 class Counterfirst extends React.Component {
   static async getInitialProps ({ store, isServer }) {
-    console.log('index get initial props')
     await store.dispatch(getTodos())
     return { isServer }
   }
@@ -32,8 +36,8 @@ class Counterfirst extends React.Component {
 
   render () {
     return (
-      <div className={css(styles.root)}>
-        <h1 className={css(styles.title)}>Todo App </h1>
+      <div>
+        <Title>Todo App</Title>
         <p>Production Live Example</p>
         <TodoList />
       </div>
@@ -52,27 +56,3 @@ const mapDispatchToProps = (dispatch) => {
 // export default withRedux(initStore, null, mapDispatchToProps)(Counterfirst)
 // export default connect(null, mapDispatchToProps)(defaultPage(Counterfirst))
 export default withRedux(initStore, null, mapDispatchToProps)(defaultPage(Counterfirst))
-
-const styles = StyleSheet.create({
-  root: {
-    width: '100%',
-    display:'flex',
-    flex: 1,
-    flexDirection: 'column',
-    height: 'auto',
-    background: 'white',
-
-    h1:{
-      color: 'blue'
-    }
-  },
-
-  title: {
-    marginLeft: 5,
-    color: 'black',
-    fontSize: 22,
-    ':hover': {
-      color: 'white'
-    }
-  }
-})

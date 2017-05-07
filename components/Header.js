@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { connect } from 'react-redux'
-import { StyleSheet, css } from 'aphrodite'
+import styled from 'styled-components'
 
 // File links array based on if user is authenticated
 const getAllowedLink = isAuthenticated => links
@@ -23,7 +23,7 @@ export default connect(state => state)(({url, isAuthenticated}) => {
         {getAllowedLink(isAuthenticated).map( link => {
             return (
                 <Link prefetch key={link.href} href={link.href}>
-                    <a className={path === link.href ? css(styles.link, styles.active) : css(styles.link)} >
+                    <a className={path === link.href ? 'active' : ''} >
                         {link.text}
                     </a>
                 </Link>
@@ -31,19 +31,4 @@ export default connect(state => state)(({url, isAuthenticated}) => {
         })}
         </div>
     )
-})
-
-const styles = StyleSheet.create({
-
-    link: {
-        marginRight: 10,
-        color: 'grey',
-        fontSize: 22,
-        ':hover': {
-            color: 'red'
-        }
-    },
-    active: {
-        color:'blue'
-    }
 })

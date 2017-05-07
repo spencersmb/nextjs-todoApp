@@ -1,6 +1,7 @@
 const jwtDecode = require('jwt-decode')
 const Cookie = require('js-cookie')
 
+
 exports.getUserFromCookie = (req) => {
   
   if (!req.headers.cookie) {

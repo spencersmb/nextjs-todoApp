@@ -49,17 +49,14 @@ export const reducer = (state = exampleInitialState, action) => {
         isAuthenticated: !state.isAuthenticated
       })
     case actionTypes.LOAD_JOKES_SUCCESS:
-    console.log('jokes reducer firing')
       return Object.assign({}, state, {
         jokes: action.jokes
       })
     case actionTypes.LOGIN_SUCCESS:
-    console.log('Login')
       return Object.assign({}, state, {
           isAuthenticated: true
         })
     case actionTypes.LOG_OUT:
-    console.log('log out')
       return Object.assign({}, state, {
           isAuthenticated: false
         })
@@ -85,7 +82,12 @@ export const toggleTodo = () => dispatch => {
 }
 
 export const toggleLogin = (isAuthenticated) => {
-    console.log('toggle login action', isAuthenticated);
+
+    /*
+    Variable being sent from defaultPage getInitialProps
+    to find if a user is logged in depending if a jwt is saved
+    */
+
     if(isAuthenticated){
       return {
         type: actionTypes.LOGIN_SUCCESS
@@ -95,6 +97,7 @@ export const toggleLogin = (isAuthenticated) => {
         type: actionTypes.LOG_OUT
       }
     }
+
 };
 
 export const logUser_in = () => dispatch => {
@@ -102,19 +105,11 @@ export const logUser_in = () => dispatch => {
 }
 
 export const authenticateUser = () => dispatch => {
-  console.log('signed in page fire auth user')
   return dispatch({ type: actionTypes.LOGIN_SUCCESS })
 }
 
 export const logUser_out = () => {
   return { type: actionTypes.LOG_OUT }
-}
-
-export const checkUserLogin = (logged) => dispatch => {
-
-  return todosApi.loggedUser(logged).then( res => {
-    (res) ? dispatch(logUser_in()) : dispatch(logUser_out())
-  })
 }
 
 export const loadTodosSuccess = todos => {
@@ -132,7 +127,6 @@ export const loadJokesSuccess = jokes => {
 };
 
 export const getTodos = () => dispatch => {
-  
   return todosApi.getTodos().then( todos => {
     dispatch(loadTodosSuccess(todos))
   })

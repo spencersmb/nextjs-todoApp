@@ -3,14 +3,13 @@ import Router from 'next/router'
 import { bindActionCreators} from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
-import { initStore, authenticateUser, getJokes } from '../../store'
+import { initStore, authenticateUser } from '../../store'
 
 import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth'
 
 class SignedIn extends React.Component {
 
-  static getInitialProps ({ store, isServer, push, req }) {
-    // const token = getToken(req);
+  static getInitialProps ({ store, isServer, push }) {
     return { isServer }
   }
 
@@ -20,14 +19,12 @@ class SignedIn extends React.Component {
   // }
 
   componentDidMount () {
-    console.log('signed in page')
     const {token, secret} = extractInfoFromHash()
     if (!checkSecret(secret) || !token) {
       console.error('Something happened with the Sign In request')
     }
     setToken(token)
     this.props.authenticateUser()
-    // this.props.getJokes(token)
     Router.push('/celeb-jokes')
   }
 

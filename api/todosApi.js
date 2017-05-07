@@ -25,7 +25,6 @@ class TodosApi {
         
     }
     static getJokes(access){
-        console.log(access.token)
         return new Promise((resolve, reject) => {
 
             const local = "http://localhost:3001/"
@@ -42,11 +41,9 @@ class TodosApi {
                 } )
                 .then( res => {
                     resolve({jokes: res})
-                    console.log('api resp 200');
                 })
                 .catch(e => {
                     reject(e)
-                    // console.log(e)
                 })
         
         });

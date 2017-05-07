@@ -18,7 +18,6 @@ const securePageHoc = Page => class SecurePage extends React.Component {
     //     isAuthenticated: PropTypes.bool.isRequired
     // }
     render () {
-        console.log(this.props)
         if (!this.props.isAuthenticated) {
             return <NotAuthorized />
         }

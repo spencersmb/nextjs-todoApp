@@ -5,8 +5,7 @@ import { toggleTodo } from '../../store'
 class TodoList extends React.Component {
 
   componentDidMount () {
-    console.log('props from todo-list:')
-    console.log(this.props);
+    
   }
 
   render () {
@@ -25,11 +24,5 @@ class TodoList extends React.Component {
 }
 
 const mapStateToProps = ({todos}) => ({todos})
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     toggleTodo: bindActionCreators(toggleTodo, dispatch),
-//   }
-// }
 
 export default connect(mapStateToProps)(TodoList)
