@@ -4,16 +4,10 @@ import { initStore } from '../store'
 import { ServerStyleSheet } from 'styled-components'
 
 class MyDocument extends Document {
-
-  constructor (props) {
-    super(props)
-  }
-
   render () {
-
     const sheet = new ServerStyleSheet()
-		const main = sheet.collectStyles(<Main />)
-		const styleTags = sheet.getStyleElement()
+    const main = sheet.collectStyles(<Main />)
+    const styleTags = sheet.getStyleElement()
 
     return (
       <html>

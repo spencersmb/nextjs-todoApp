@@ -12,7 +12,7 @@
     "watch": "nodemon server.js -w server.js",
     "start": "next start",
     "heroku-postbuild": "heroku-nextjs-build",
-    "lint": "standard"
+    "lint": "standard --verbose"
   },
   "standard": {
     "parser": "babel-eslint",

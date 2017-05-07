@@ -4,7 +4,7 @@ const fs = require('fs')
 const bodyParser = require('body-parser') // turns the body into json object
 const colors = require('colors')
 const request = require('superagent')
-//"dev": "npm-run-all --parallel server",
+// "dev": "npm-run-all --parallel server",
 // ENV SETUP
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -12,25 +12,22 @@ const handle = app.getRequestHandler()
 const port = process.env.PORT || 3000
 const expressServer = express()
 
-//Auth
+// Auth
 const serverLock = require('./utils/server-lock')
 const authUtils = require('./utils/server-auth')
 
-
 const secretAuth = {
-    AUTH0_CLIENT_ID: "HfHVZS2aB0TLT8Z6Bny5kawCTrcuoWOt",
-    AUTH0_CLIENT_DOMAIN: "smbtodos.auth0.com"
+  AUTH0_CLIENT_ID: 'HfHVZS2aB0TLT8Z6Bny5kawCTrcuoWOt',
+  AUTH0_CLIENT_DOMAIN: 'smbtodos.auth0.com'
 }
 
-//Start APP
+// Start APP
 app.prepare()
   .then(() => {
-
     // allows us to send json to our express app
     expressServer.use(bodyParser.json())
 
     expressServer.get('/other', (req, res) => {
-      
       // console.log(serverLock.getBaseUrl(req));
       return app.render(req, res, '/other', req.query)
     })
@@ -64,7 +61,6 @@ app.prepare()
     //   //     console.log(err)
     //   //   })
 
-
     //   // return app.render(req, res, '/celeb-jokes', req.query, { nodeJokes: data.body })
     //   return app.render(req, res, '/celeb-jokes', req.query)
 
@@ -95,12 +91,11 @@ app.prepare()
     })
 
     expressServer.get('*', (req, res) => {
-        return handle(req, res)
+      return handle(req, res)
     })
 
     expressServer.listen(port, (err) => {
       if (err) throw err
       console.log('> Ready on: ' + port)
     })
-
   })

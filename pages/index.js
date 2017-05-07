@@ -1,11 +1,9 @@
 import React from 'react'
-import { bindActionCreators} from 'redux'
-import { connect } from 'react-redux'
-import { initStore} from '../store'
+import { bindActionCreators } from 'redux'
+import { initStore } from '../store'
 import { getTodos } from '../actions/todoActions'
 import withRedux from 'next-redux-wrapper'
 import TodoList from '../components/todo/todoList'
-import Header from '../components/Header'
 import defaultPage from '../hocs/defaultPage'
 import styled from 'styled-components'
 

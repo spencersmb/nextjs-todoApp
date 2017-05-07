@@ -1,16 +1,18 @@
 import React from 'react'
 import { initStore } from '../../store'
-import { logUser_out } from '../../actions/authActions'
+import { logUserOut } from '../../actions/authActions'
 import withRedux from 'next-redux-wrapper'
 import { unsetToken } from '../../utils/auth'
 import { logout } from '../../utils/lock'
-import { bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
+import Auth0 from '../../utils/Auth0'
 
 class SignOff extends React.Component {
   componentDidMount () {
     unsetToken()
-    logout()
-    this.props.logUser_out()
+    // logout()
+    Auth0.logout('/')
+    this.props.logUserOut()
   }
 
   render () {
@@ -20,7 +22,7 @@ class SignOff extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logUser_out: bindActionCreators(logUser_out, dispatch)
+    logUserOut: bindActionCreators(logUserOut, dispatch)
   }
 }
 

@@ -1,27 +1,27 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import NotAuthorized from '../components/NotAuthorized'
 import defaultPage from './defaultPage'
 import { connect } from 'react-redux'
 
 const securePageHoc = Page => class SecurePage extends React.Component {
-    static async getInitialProps (ctx) {
-        const state = ctx.store.getState()
-        const pageProps = await Page.getInitialProps && await Page.getInitialProps(ctx)
-        return {
-            ...pageProps,
-            isAuthenticated: state.isAuthenticated
-        }
+  static async getInitialProps (ctx) {
+    const state = ctx.store.getState()
+    const pageProps = await Page.getInitialProps && await Page.getInitialProps(ctx)
+    return {
+      ...pageProps,
+      isAuthenticated: state.user.isAuthenticated
     }
-    //depricated
+  }
+    // depricated
     // static propTypes = {
     //     isAuthenticated: PropTypes.bool.isRequired
     // }
-    render () {
-        if (!this.props.isAuthenticated) {
-            return <NotAuthorized />
-        }
-        return <Page {...this.props} />
+  render () {
+    if (!this.props.isAuthenticated) {
+      return <NotAuthorized />
     }
+    return <Page {...this.props} />
+  }
 }
 
 // Takes in Page(component) and returns our HOC passing in Page to the 2nd HOC

@@ -1,18 +1,22 @@
 import actionTypes from '../actions/actionTypes'
-import initialState from './initialState';
-export const authReducer = (state = initialState.isAuthenticated, action) => {
+import initialState from './initialState'
 
-  switch(action.type){
-      
+export const authReducer = (state = initialState.user, action) => {
+  switch (action.type) {
     case actionTypes.TOGGLE_LOGIN:
-        return !state.isAuthenticated
+      return Object.assign( {}, state, {
+        isAuthenticated: !state.isAuthenticated
+      })
     case actionTypes.LOGIN_SUCCESS:
-        return true
+      return Object.assign( {}, state, {
+        ...action.user,
+        isAuthenticated: true
+      })
     case actionTypes.LOG_OUT:
-        return false
+      return Object.assign( {}, state, {
+        isAuthenticated: false
+      })
     default:
-        return state;
-
+      return state
   }
-
-};
+}

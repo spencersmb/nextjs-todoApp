@@ -2,11 +2,13 @@ export default {
   lastUpdate: 0,
   light: false,
   count: 0,
-  todos:[
+  todos: [
     {
-      text: "initial state todo"
+      text: 'initial state todo'
     }
   ],
-  jokes:[],
-  isAuthenticated: false
+  jokes: [],
+  user:{
+    isAuthenticated: false
+  }
 }

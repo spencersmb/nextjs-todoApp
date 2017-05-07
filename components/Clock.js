@@ -13,7 +13,7 @@ const format = t => `${pad(t.getUTCHours())}:${pad(t.getUTCMinutes())}:${pad(t.g
 const pad = n => n < 10 ? `0${n}` : n
 
 const styles = StyleSheet.create({
-  clock:{
+  clock: {
     padding: '15px',
     display: 'inline-block',
     color: '#82FA58',

@@ -39,7 +39,6 @@ export const unsetToken = () => {
 }
 
 export const getUserFromCookie = (req) => {
-  
   if (!req.headers.cookie) {
     return undefined
   }
@@ -51,16 +50,17 @@ export const getUserFromCookie = (req) => {
   return jwtDecode(jwt)
 }
 
+/*
+Get Token first checks to see if the client-side is available, otherwise it will pull from the server
+*/
 export const getToken = (req) => {
-
   if (typeof window !== 'undefined') {
-      return getTokenFromLocalStorage();
+    return getTokenFromLocalStorage()
   }
 
-  if(req){
+  if (req) {
     return getCookie(req)
   }
-
 }
 
 export const getCookie = (req) => {
