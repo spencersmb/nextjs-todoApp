@@ -9,10 +9,11 @@ import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth'
 
 class SignedIn extends React.Component {
 
-  static getInitialProps ({ store, isServer, push }) {
-    
+  static getInitialProps ({ store, isServer, push, req }) {
+    // const token = getToken(req);
     return { isServer }
   }
+
   //Deprecated
   // static propTypes = {
   //   url: PropTypes.object.isRequired
@@ -26,9 +27,10 @@ class SignedIn extends React.Component {
     }
     setToken(token)
     this.props.authenticateUser()
-    // this.props.getJokes()
+    // this.props.getJokes(token)
     Router.push('/celeb-jokes')
   }
+
   render () {
     return null
   }

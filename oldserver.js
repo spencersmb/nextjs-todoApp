@@ -4,7 +4,7 @@ const fs = require('fs')
 const bodyParser = require('body-parser') // turns the body into json object
 const colors = require('colors')
 const request = require('superagent')
-
+//"dev": "npm-run-all --parallel server",
 // ENV SETUP
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })

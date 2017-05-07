@@ -51,6 +51,18 @@ export const getUserFromCookie = (req) => {
   return jwtDecode(jwt)
 }
 
+export const getToken = (req) => {
+
+  if (typeof window !== 'undefined') {
+      return getTokenFromLocalStorage();
+  }
+
+  if(req){
+    return getCookie(req)
+  }
+
+}
+
 export const getCookie = (req) => {
   if (!req.headers.cookie) {
     return undefined
@@ -61,14 +73,6 @@ export const getCookie = (req) => {
   }
   const jwt = jwtCookie.split('=')[1]
   return jwt
-}
-
-export const getToken = (req) => {
-
-  if(req){
-    return getCookie(req)
-  }
-
 }
 
 export const getTokenFromLocalStorage = () => {

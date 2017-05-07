@@ -16,15 +16,14 @@ if (typeof window !== 'undefined') {
 
 class CelebJokes extends React.Component {
   static async getInitialProps ({ store, isServer, req, res}) {
-    const token = getToken(req);
+    //  const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req)
     const state = store.getState()
-
+    const token = getToken(req);
     if(state.isAuthenticated){
-      console.log('send dispatcher to make api call for jokes')
       await store.dispatch(getJokes({token}))
     }
       
-    return { isServer }
+    return { isServer, token }
   }
 
   componentDidMount () {
