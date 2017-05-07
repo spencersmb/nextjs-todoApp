@@ -1,14 +1,12 @@
 import React from 'react'
 import { bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
-import { initStore, startClock, addCount, serverRenderClock, getTodos } from '../store'
+import { initStore} from '../store'
+import { getTodos } from '../actions/todoActions'
 import withRedux from 'next-redux-wrapper'
-import Page from '../components/Page'
 import TodoList from '../components/todo/todoList'
-import Link from 'next/link'
 import Header from '../components/Header'
 import defaultPage from '../hocs/defaultPage'
-import PageTemplate from '../components/PageTemplateLayout'
 import styled from 'styled-components'
 
 const Title = styled.h1`
@@ -27,8 +25,6 @@ class Counterfirst extends React.Component {
   }
 
   componentDidMount () {
-    // console.log("ndex props")
-    // console.log(this.props)
   }
 
   componentWillUnmount () {
@@ -37,7 +33,7 @@ class Counterfirst extends React.Component {
   render () {
     return (
       <div>
-        <Title>Todo App</Title>
+        <Title>Boilerplate App</Title>
         <p>Production Live Example</p>
         <TodoList />
       </div>
@@ -47,12 +43,8 @@ class Counterfirst extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCount: bindActionCreators(addCount, dispatch),
-    startClock: bindActionCreators(startClock, dispatch),
     getTodos: bindActionCreators(getTodos, dispatch)
   }
 }
 
-// export default withRedux(initStore, null, mapDispatchToProps)(Counterfirst)
-// export default connect(null, mapDispatchToProps)(defaultPage(Counterfirst))
 export default withRedux(initStore, null, mapDispatchToProps)(defaultPage(Counterfirst))

@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import withRedux from 'next-redux-wrapper'
-import { toggleLogin } from '../store'
+import { toggleLogin } from '../actions/authActions'
 import Header from '../components/Header'
 import { connect } from 'react-redux';
 import { getUserFromCookie, getUserFromLocalStorage, loggedUser } from '../utils/auth'

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-
 import NotAuthorized from '../components/NotAuthorized'
 import defaultPage from './defaultPage'
 import { connect } from 'react-redux'

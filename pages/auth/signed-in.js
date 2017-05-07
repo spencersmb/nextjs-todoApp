@@ -3,8 +3,8 @@ import Router from 'next/router'
 import { bindActionCreators} from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
-import { initStore, authenticateUser } from '../../store'
-
+import { initStore } from '../../store'
+import { authenticateUser } from '../../actions/authActions'
 import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth'
 
 class SignedIn extends React.Component {
@@ -35,8 +35,7 @@ class SignedIn extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateUser: bindActionCreators(authenticateUser, dispatch),
-    getJokes: bindActionCreators(getJokes, dispatch)
+    authenticateUser: bindActionCreators(authenticateUser, dispatch)
   }
 }
 

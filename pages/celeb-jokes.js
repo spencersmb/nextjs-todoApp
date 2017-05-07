@@ -1,13 +1,12 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { initStore, getJokes } from '../store'
+import { initStore } from '../store'
+import { getJokes } from '../actions/jokeActions'
 import withRedux from 'next-redux-wrapper'
 import Page from '../components/Page'
-import Link from 'next/link'
 import Header from '../components/Header'
 import {getToken} from '../utils/auth'
 import securePage from '../hocs/securePage'
-import defaultPage from '../hocs/defaultPage'
 
 class CelebJokes extends React.Component {
   static async getInitialProps ({ store, isServer, req, res}) {

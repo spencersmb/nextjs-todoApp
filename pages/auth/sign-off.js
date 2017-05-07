@@ -1,5 +1,6 @@
 import React from 'react'
-import { initStore, logUser_out } from '../../store'
+import { initStore } from '../../store'
+import { logUser_out } from '../../actions/authActions'
 import withRedux from 'next-redux-wrapper'
 import { unsetToken } from '../../utils/auth'
 import { logout } from '../../utils/lock'

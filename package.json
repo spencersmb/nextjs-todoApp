@@ -11,7 +11,14 @@
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
     "start": "next start",
-    "heroku-postbuild": "heroku-nextjs-build"
+    "heroku-postbuild": "heroku-nextjs-build",
+    "lint": "standard"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "**/node_modules/**"
+    ]
   },
   "engines": {
     "node": "6.9.x"
@@ -41,7 +48,10 @@
     "styled-components": "^2.0.0-17"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "babel-jest": "^19.0.0",
+    "babel-plugin-styled-components": "^1.1.4",
+    "babel-preset-stage-0": "^6.16.0",
     "colors": "^1.1.2",
     "enzyme": "^2.8.2",
     "expect": "^1.20.2",
@@ -49,9 +59,8 @@
     "mocha": "^3.3.0",
     "npm-run-all": "^4.0.2",
     "redux-devtools-extension": "^2.13.2",
-    "supertest": "^3.0.0",
-    "babel-plugin-styled-components": "^1.1.4",
-    "babel-preset-stage-0": "^6.16.0"
+    "standard": "^10.0.2",
+    "supertest": "^3.0.0"
   },
   "author": "Spencer Bigum",
   "license": "ISC"
