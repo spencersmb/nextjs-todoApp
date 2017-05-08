@@ -45,7 +45,6 @@
     "redux-thunk": "^2.1.0",
     "request": "^2.81.0",
     "styled-components": "^2.0.0-17",
-    "babel-plugin-transform-define": "^1.2.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
