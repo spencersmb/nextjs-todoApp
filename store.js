@@ -4,13 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { todosReducer } from './reducers/todosReducer'
 import { authReducer } from './reducers/authReducer'
 import { jokesReducer } from './reducers/jokesReducer'
+import { reducer as formReducer } from 'redux-form';
+
 
 export const initStore = (initialState = {}) => {
     // mirror of state from original app
   const reducers = combineReducers({
     todos: todosReducer,
-    user: authReducer,
-    jokes: jokesReducer
+    user: authReducer,  
+    jokes: jokesReducer,
+    form: formReducer
   })
 
   if (typeof window !== 'undefined') {

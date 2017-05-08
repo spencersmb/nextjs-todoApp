@@ -17,6 +17,11 @@ export const extractInfoFromHash = () => {
   return {token: id_token, secret: state}
 }
 
+export const createUser = (token) => {
+  console.log((token))
+  return {user: jwtDecode(token)}
+}
+
 export const setToken = (token) => {
   if (!process.browser) {
     return
@@ -82,6 +87,24 @@ export const getTokenFromLocalStorage = () => {
 export const getUserFromLocalStorage = () => {
   const json = window.localStorage.user
   return json ? JSON.parse(json) : undefined
+}
+
+export const checkTokenExpiry = (token) => {
+  let jwt = token
+  if(jwt) {
+    let jwtExp = jwt.exp;
+    let expiryDate = new Date(0);
+    expiryDate.setUTCSeconds(jwtExp);
+
+    // if new date is less than exp date
+    // the exp date is good
+    if(new Date() < expiryDate) {
+      return true;
+    }
+
+  }
+  
+  return false;  
 }
 
 export const setSecret = (secret) => window.localStorage.setItem('secret', secret)

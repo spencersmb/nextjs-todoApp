@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../../store'
 import { authenticateUser } from '../../actions/authActions'
-import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth'
+import { setToken, checkSecret, extractInfoFromHash, getUserFromLocalStorage } from '../../utils/auth'
 
 class SignedIn extends React.Component {
   static getInitialProps ({ store, isServer, push }) {
@@ -17,12 +17,15 @@ class SignedIn extends React.Component {
   // }
 
   componentDidMount () {
+    console.log('signed in page hit')
     const {token, secret} = extractInfoFromHash()
     if (!checkSecret(secret) || !token) {
       console.error('Something happened with the Sign In request')
     }
     setToken(token)
-    this.props.authenticateUser()
+    const user = getUserFromLocalStorage()
+    console.log(user);
+    this.props.authenticateUser(user)
     Router.push('/celeb-jokes')
   }
 

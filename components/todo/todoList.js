@@ -12,7 +12,7 @@ class TodoList extends React.Component {
     return (
       <div>
         <ul>
-          {todos.map(todo => <li key={todo.text}>{todo.text}</li>)}
+          {todos.map(todo => <li key={todo._id}>{todo.text}</li>)}
         </ul>
       </div>
 

@@ -4,22 +4,27 @@ import jwtDecode from 'jwt-decode'
 import Cookie from 'js-cookie'
 import Router from 'next/router'
 
+const options = {
+  allowedConnections: ['Username-Password-Authentication'],
+  container: 'put-lock-here',
+  closable: false,
+  avatar: null,
+  languageDictionary: {
+    title: "FontView"
+  },
+  auth: {
+    responseType: 'token id_token',
+    domain: 'smbtodos.auth0.com',
+    params: {
+      scope: 'openid profile email'
+    }
+  }
+}
+
 export default class Auth0 {
 
   constructor(saveUser) {
 
-    this.options = {
-      allowedConnections: ['Username-Password-Authentication'],
-      container: 'put-lock-here',
-      closable: false,
-      auth: {
-        responseType: 'token id_token',
-        domain: 'smbtodos.auth0.com',
-        params: {
-          scope: 'openid profile email'
-        }
-      }
-    }
     this.user = {}
     this.auth0
     this.lock
@@ -31,16 +36,16 @@ export default class Auth0 {
   }
 
   init() {
-    this.auth0 = new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, this.options)
+    this.auth0 = new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, options)
   }
 
-  login() {
+  displayLogin() {
     this.init()
-    this.createLockEvent()
+    this.authenticateUserEvent()
     this.show()
   }
 
-  createLockEvent() {
+  authenticateUserEvent() {
     return this.auth0.on("authenticated", (authResult) => {
       this.auth0.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) {
@@ -69,21 +74,40 @@ export default class Auth0 {
 
         // Save user in redux
         this.saveUser(user)
+
         // Move page
         Router.push('/celeb-jokes')
+        
       });
+
     });
+
+  }
+
+  static unsetToken = () => {
+    if (!process.browser) {
+      return
+    }
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('user')
+    window.localStorage.removeItem('secret')
+    Cookie.remove('jwt')
+
+    window.localStorage.setItem('logout', Date.now())
   }
 
   static getBaseUrl = () => `${window.location.protocol}//${window.location.host}`
 
-  static logout(url){
-    console.log('logout')
-    Auth0.getLock().logout({returnTo: Auth0.getBaseUrl()})
+  static logout(redirect = true){
+    if (!redirect) {
+      Auth0.getLock().logout()
+      return
+    }
+      Auth0.getLock().logout({returnTo: Auth0.getBaseUrl()})
   }
 
-  static getLock(){
-    return new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN)
+  static getLock() {
+    return new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, options)
   }
 
 }

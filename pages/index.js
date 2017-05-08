@@ -6,33 +6,59 @@ import withRedux from 'next-redux-wrapper'
 import TodoList from '../components/todo/todoList'
 import defaultPage from '../hocs/defaultPage'
 import styled from 'styled-components'
+import TodoInput from '../components/todo/todoInput'
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
+// const rule1 = {
+//   backgroundColor: 'blue',
+//   '@media screen and (min-width: 250px)': {
+//     backgroundColor: 'red',
+//   },
+// }
+// const Comp = styled.div`
+//     ${rule1}
+//     `
+// const Title = styled.h1`
+//   color: red;
+//   font-size: 50px;
 
-  > a{
-    font-size:18px;
+//   > a{
+//     font-size:18px;
+//   }
+// `
+const Title = styled.h1`${{
+  color: 'red',
+  fontSize: '50px',
+  '> a': {
+    fontSize: '18px'
   }
-`
+}}`
 
 class Counterfirst extends React.Component {
-  static async getInitialProps ({ store, isServer }) {
+  static async getInitialProps({ store, isServer }) {
     await store.dispatch(getTodos())
     return { isServer }
   }
 
-  componentDidMount () {
+  componentDidMount() {
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
   }
 
-  render () {
+  render() {
+
+    const showTodoInput = () => {
+      if(this.props.user.isAuthenticated){
+        return <TodoInput/>
+      }
+    }
+
     return (
       <div>
         <Title>Boilerplate App</Title>
         <p>Production Live Example</p>
+        {/*{showTodoInput()}*/}
+        <TodoInput/>
         <TodoList />
       </div>
     )

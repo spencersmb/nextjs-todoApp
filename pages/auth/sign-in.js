@@ -11,34 +11,26 @@ import jwtDecode from 'jwt-decode'
 import Cookie from 'js-cookie'
 import { authenticateUser } from '../../actions/authActions'
 import { getUserFromLocalStorage } from '../../utils/auth'
-import Auth0 from '../../utils/Auth0'
-
+// import Auth0 from '../../utils/Auth0'
+const CONTAINER_ID = 'put-lock-here'
+//.auth0-lock.auth0-lock .auth0-lock-widget - overflow-y
 class SignIn extends React.Component {
 
   constructor (props) {
     super(props)
-    this.auth0 = new Auth0(this.props.authenticateUser)
   }
 
   componentDidMount () {
-
-    this.auth0.login()
+    show(CONTAINER_ID)
 
   }
   render () {
     return (
       <div>
-            sign in PAGE
-            <div id='put-lock-here' />
+        <div id={CONTAINER_ID} />
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenticateUser: bindActionCreators(authenticateUser, dispatch)
-  }
-}
-
-export default withRedux(initStore, null, mapDispatchToProps)(defaultPage(SignIn))
+export default withRedux(initStore)(defaultPage(SignIn))
