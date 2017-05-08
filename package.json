@@ -7,11 +7,11 @@
     "jest:watch": "npm run jest -- --watch --no-cache",
     "test": "mocha --reporter spec __tests__/**/*.test.js",
     "test:watch": "npm run test -- --watch",
-    "dev": "next -r dotenv/config",
+    "dev": "next",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
     "start": "next start",
-    "heroku-postbuild": "heroku-nextjs-build",
+    "heroku-postbuild": "next build",
     "lint": "standard --verbose"
   },
   "standard": {
