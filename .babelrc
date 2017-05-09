@@ -2,5 +2,9 @@
   "presets": [
     "next/babel",
     "stage-0"
+  ],
+  "plugins": [
+    ["styled-components", { "ssr": true }],
+    "transform-define", "./env-config.js"
   ]
 }
