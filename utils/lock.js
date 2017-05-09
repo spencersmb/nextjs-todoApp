@@ -4,9 +4,14 @@ const getLock = (options) => {
   const config = require('../config.json')
   const Auth0Lock = require('auth0-lock').default
 
+  // if(env === 'development' || env === 'test'){
+  //   return new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, options)
+  // }
 
+  // const AUTH0_CLIENT_ID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
+  // const clientID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
   
-  return new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
+  return new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_CLIENT_DOMAIN, options)
 }
 
 const getBaseUrl = () => `${window.location.protocol}//${window.location.host}`
