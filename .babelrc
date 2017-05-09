@@ -3,7 +3,6 @@
     "next/babel"
   ],
   "plugins": [
-    ["styled-components", { "ssr": true }],
-    ["transform-define", "./env-config.js"]
+    ["styled-components", { "ssr": true }]
   ]
 }
