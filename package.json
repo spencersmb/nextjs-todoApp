@@ -7,7 +7,7 @@
     "jest:watch": "npm run jest -- --watch --no-cache",
     "test": "mocha --reporter spec __tests__/**/*.test.js",
     "test:watch": "npm run test -- --watch",
-    "dev": "next -r dotenv/config",
+    "dev": "next",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
     "start": "next start -p $PORT",

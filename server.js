@@ -19,6 +19,13 @@ app.prepare()
 
     expressServer.get('/other', (req, res) => {
       // console.log(serverLock.getBaseUrl(req));
+      
+
+      req.query = {
+        text: "spencer"
+      }
+
+      console.log(req.query)
       return app.render(req, res, '/other', req.query)
     })
 
@@ -27,6 +34,7 @@ app.prepare()
       // console.log(JSON.stringify(req.secure, null, 2));
       // console.log('headers'.red);
       // console.log(JSON.stringify(req.headers, null, 2));
+      
       return app.render(req, res, '/', req.query)
     })
 
