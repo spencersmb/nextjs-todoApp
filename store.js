@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
 import { todosReducer } from './reducers/todosReducer'
 import { authReducer } from './reducers/authReducer'
 import { jokesReducer } from './reducers/jokesReducer'
@@ -17,6 +16,7 @@ export const initStore = (initialState = {}) => {
   })
 
   if (typeof window !== 'undefined' && process.env,NODE_ENV != 'production') {
+    import { composeWithDevTools } from 'redux-devtools-extension'
     // const composeEnhancers = composeWithDevTools({
     //   // Specify here name, actionsBlacklist, actionsCreators and other options if needed
     //   actionsBlacklist: ['TICK']
