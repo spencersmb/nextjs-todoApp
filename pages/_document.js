@@ -12,6 +12,7 @@ class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <link async href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'></link>
           <title>My page</title>
           {styleTags}
         </Head>

@@ -7,6 +7,13 @@ import TodoList from '../components/todo/todoList'
 import defaultPage from '../hocs/defaultPage'
 import styled from 'styled-components'
 import TodoInput from '../components/todo/todoInput'
+import { injectGlobal } from 'styled-components';
+
+injectGlobal`
+	body {
+		margin: 0;
+	}
+`;
 
 // const rule1 = {
 //   backgroundColor: 'blue',
@@ -28,6 +35,7 @@ import TodoInput from '../components/todo/todoInput'
 const Title = styled.h1`${{
   color: 'red',
   fontSize: '50px',
+  fontFamily: 'Open Sans',
   '> a': {
     fontSize: '18px'
   }
