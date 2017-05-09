@@ -16,7 +16,7 @@ export const initStore = (initialState = {}) => {
   })
 
   if (typeof window !== 'undefined' && process.env,NODE_ENV != 'production') {
-    import { composeWithDevTools } from 'redux-devtools-extension'
+    const composeWithDevTools = require('redux-devtools-extension')
     // const composeEnhancers = composeWithDevTools({
     //   // Specify here name, actionsBlacklist, actionsCreators and other options if needed
     //   actionsBlacklist: ['TICK']
