@@ -16,20 +16,20 @@ export const initStore = (initialState = {}) => {
     form: formReducer
   })
 
-  if (typeof window !== 'undefined') {
-    // const composeEnhancers = composeWithDevTools({
-    //   // Specify here name, actionsBlacklist, actionsCreators and other options if needed
-    //   actionsBlacklist: ['TICK']
-    // });
+  // if (typeof window !== 'undefined') {
+  //   // const composeEnhancers = composeWithDevTools({
+  //   //   // Specify here name, actionsBlacklist, actionsCreators and other options if needed
+  //   //   actionsBlacklist: ['TICK']
+  //   // });
 
-    return createStore(
-      reducers,
-      initialState,
-      composeWithDevTools(
-        applyMiddleware(thunkMiddleware)
-      )
-    )
-  }
+  //   return createStore(
+  //     reducers,
+  //     initialState,
+  //     composeWithDevTools(
+  //       applyMiddleware(thunkMiddleware)
+  //     )
+  //   )
+  // }
 
   return createStore(reducers, initialState, applyMiddleware(thunkMiddleware))
 }
