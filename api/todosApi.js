@@ -2,13 +2,12 @@
 import fetch from 'isomorphic-unfetch'
 import { getTokenFromLocalStorage } from '../utils/auth'
 
-const api = 'http://localhost:3001'
-// const api = 'https://nameless-scrubland-28835.herokuapp.com'
+// const api = 'http://localhost:3001'
+const api = 'https://nameless-scrubland-28835.herokuapp.com'
 
 class TodosApi {
   
   static addTodo (todo) {
-    console.log(todo)
     // since this always happens on the server I can just get the jwt from localhost
     const token = getTokenFromLocalStorage();
     return new Promise((resolve, reject) => {
