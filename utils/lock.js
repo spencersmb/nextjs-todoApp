@@ -8,10 +8,10 @@ const getLock = (options) => {
   //   return new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, options)
   // }
 
-  // const AUTH0_CLIENT_ID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
-  // const clientID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
-  
-  return new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_CLIENT_DOMAIN, options)
+  const CLIENT_ID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
+  const DOMAIN = (env === 'production') ? process.env.AUTH0_DOMAIN : config.AUTH0_CLIENT_ID
+  // return new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_CLIENT_DOMAIN, options)
+  return new Auth0Lock(CLIENT_ID, DOMAIN, options)
 }
 
 const getBaseUrl = () => `${window.location.protocol}//${window.location.host}`

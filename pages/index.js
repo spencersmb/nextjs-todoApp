@@ -8,7 +8,9 @@ import defaultPage from '../hocs/defaultPage'
 import styled from 'styled-components'
 import TodoInput from '../components/todo/todoInput'
 import { injectGlobal } from 'styled-components';
-
+const CLIENT_ID = (env === 'production') ? process.env.AUTH0_CLIENT_ID : config.AUTH0_CLIENT_ID
+console.log(CLIENT_ID)
+console.log(typeof CLIENT_ID)
 injectGlobal`
 	body {
 		margin: 0;
@@ -44,7 +46,6 @@ const Title = styled.h1`${{
 class Counterfirst extends React.Component {
   static async getInitialProps({ store, isServer }) {
     await store.dispatch(getTodos())
-    console.log(process.env)
     return { isServer }
   }
 
