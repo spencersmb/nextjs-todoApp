@@ -10,7 +10,7 @@
     "dev": "next -r dotenv/config",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "heroku-postbuild": "heroku-nextjs-build",
     "lint": "standard --verbose"
   },
