@@ -44,6 +44,7 @@ const Title = styled.h1`${{
 class Counterfirst extends React.Component {
   static async getInitialProps({ store, isServer }) {
     await store.dispatch(getTodos())
+    console.log(process.env)
     return { isServer }
   }
 

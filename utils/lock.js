@@ -4,9 +4,7 @@ const getLock = (options) => {
   const config = require('../config.json')
   const Auth0Lock = require('auth0-lock').default
 
-  if(env === 'development' || env === 'test'){
-    return new Auth0Lock(config.AUTH0_CLIENT_ID, config.AUTH0_CLIENT_DOMAIN, options)
-  }
+
   
   return new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
 }
