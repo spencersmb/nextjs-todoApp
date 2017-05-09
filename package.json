@@ -44,13 +44,14 @@
     "redux-form": "^6.6.3",
     "redux-thunk": "^2.1.0",
     "request": "^2.81.0",
-    "uuid": "^3.0.1"
-  },
-  "devDependencies": {
+    "styled-components": "^2.0.0-17",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^19.0.0",
     "babel-plugin-styled-components": "^1.1.4",
     "babel-preset-stage-0": "^6.16.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
     "colors": "^1.1.2",
     "enzyme": "^2.8.2",
     "expect": "^1.20.2",
