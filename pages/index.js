@@ -5,7 +5,7 @@ import { getTodos } from '../actions/todoActions'
 import withRedux from 'next-redux-wrapper'
 import TodoList from '../components/todo/todoList'
 import defaultPage from '../hocs/defaultPage'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import TodoInput from '../components/todo/todoInput'
 import { injectGlobal } from 'styled-components';
 
@@ -27,6 +27,37 @@ import { injectGlobal } from 'styled-components';
 //   }
 // `
 
+
+const sizes = {
+  phone: 378,
+  tablet: 768,
+  desktop: 992,
+  giant: 1170
+}
+
+const media = Object.keys(sizes).reduce( (finalMedia, size) => {
+
+  return {
+    ...finalMedia,
+    [size]: function(...args) {
+      return css`
+        @media(max-width: ${sizes[size]}px) {
+          ${css(...args)}
+        }
+      `
+    }
+  }
+
+}, {} )
+
+console.log(media)
+
+const Div = styled.div`
+  padding-left: 20px;
+  ${media.tablet`
+    padding-left: 30px;
+  `}
+`
 const Title = styled.h1`${{
   color: 'red',
   fontSize: '50px',
@@ -58,10 +89,9 @@ class Counterfirst extends React.Component {
 
     return (
       <div>
-        <Title>Boilerplate App</Title>
+        <Div><Title>Boilerplate App</Title></Div>
         <p>Production Live Example</p>
-        {/*{showTodoInput()}*/}
-        <TodoInput/>
+        {showTodoInput()}
         <TodoList />
       </div>
     )
@@ -75,3 +105,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRedux(initStore, null, mapDispatchToProps)(defaultPage(Counterfirst))
+
+

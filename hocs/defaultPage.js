@@ -12,6 +12,7 @@ export default (Page) => {
       // HOC runs before each page and determins if a user is logged in or not
       // Then dispatch result to redux
       const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req)
+      
       ctx.store.dispatch(validateUserToken(loggedUser))
       const state = ctx.store.getState()
 
